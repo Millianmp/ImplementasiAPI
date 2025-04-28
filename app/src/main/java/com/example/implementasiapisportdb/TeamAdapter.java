@@ -9,47 +9,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
 
-    private List<Team> teams;
+    private final List<Team> teamList;
 
-    public TeamAdapter(List<Team> teams) {
-        this.teams = teams;
+    public TeamAdapter(List<Team> teamList) {
+        this.teamList = teamList;
     }
 
     @NonNull
     @Override
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_team, parent, false);
-        return new TeamViewHolder(view);
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_team, parent, false);
+        return new TeamViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
-        Team team = teams.get(position);
-        holder.teamName.setText(team.getName());
-        // Gunakan Picasso untuk memuat gambar logo tim
-        Picasso.get().load(team.getLogo()).into(holder.teamLogo);
+        Team team = teamList.get(position);
+        holder.tvTeamName.setText(team.getStrTeam());
+        Glide.with(holder.itemView.getContext())
+                .load(team.getStrTeamBadge())  // Logo URL
+                .into(holder.ivTeamLogo);
     }
 
     @Override
     public int getItemCount() {
-        return teams.size();
+        return teamList.size();
     }
 
-    public static class TeamViewHolder extends RecyclerView.ViewHolder {
+    static class TeamViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTeamName;
+        ImageView ivTeamLogo;
 
-        TextView teamName;
-        ImageView teamLogo;
-
-        public TeamViewHolder(View itemView) {
+        TeamViewHolder(@NonNull View itemView) {
             super(itemView);
-            teamName = itemView.findViewById(R.id.teamName);
-            teamLogo = itemView.findViewById(R.id.teamLogo);
+            tvTeamName = itemView.findViewById(R.id.tvTeamName);
+            ivTeamLogo = itemView.findViewById(R.id.ivTeamLogo);
         }
     }
 }

@@ -5,6 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    @GET("v1/teams")
-    Call<TeamResponse> getAllTeams(@Query("l") String league);  // "l" adalah parameter untuk league (misalnya: PL)
+
+    @GET("search_all_teams.php")
+    Call<TeamResponse> getTeams(@Query("l") String league);
 }

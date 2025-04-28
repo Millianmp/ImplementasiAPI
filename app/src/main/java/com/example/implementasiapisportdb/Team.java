@@ -1,23 +1,27 @@
 package com.example.implementasiapisportdb;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Team {
-    private String name;
-    private String logo;
+    @SerializedName("idTeam")
+    private String idTeam;
 
-    // Getter dan Setter
-    public String getName() {
-        return name;
+    @SerializedName("strTeam")
+    private String strTeam;
+
+    @SerializedName("strTeamBadge")
+    private String strTeamBadge;
+
+    // getter
+    public String getIdTeam() {
+        return idTeam;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getStrTeam() {
+        return strTeam;
     }
 
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public String getStrTeamBadge() {
+        return strTeamBadge;
     }
 }
