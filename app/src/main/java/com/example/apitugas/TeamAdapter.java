@@ -16,10 +16,11 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
-
     private List<Team> teamList;
 
-    public TeamAdapter(List<Team> teamList) {
+
+    public TeamAdapter( List<Team> teamList) {
+
         this.teamList = teamList;
 
     }
@@ -56,11 +57,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
         public TeamViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvNamaTim = itemView.findViewById(R.id.tvNamaTim);
-            tvStadium = itemView.findViewById(R.id.tvStadium);
-            imgBadge = itemView.findViewById(R.id.GambarBadge);
+            tvNamaTim = itemView.findViewById(R.id.tvNamaTimPmr);
+            tvStadium = itemView.findViewById(R.id.tvStadiumPmr);
+            imgBadge = itemView.findViewById(R.id.GambarBadgePmr);
 
         }
     }
 }
-

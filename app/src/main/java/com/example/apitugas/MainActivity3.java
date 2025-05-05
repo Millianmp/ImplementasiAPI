@@ -1,5 +1,6 @@
 package com.example.apitugas;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -19,29 +20,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity3 extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView2;
     TeamAdapter teamAdapter;
     List<Team> teamList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
 
-        recyclerView = findViewById(R.id.rvTeamsPmr);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView2 = findViewById(R.id.rvTeamsSpain);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
 
         teamAdapter = new TeamAdapter(teamList);
-        recyclerView.setAdapter(teamAdapter);
+        recyclerView2.setAdapter(teamAdapter);
 
         getTeamData();
     }
 
     private void getTeamData() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<TeamResponse> call = apiService.getSpanishLeagueTeams();
+        Call<TeamResponse> call = apiService.getPremierLeagueTeams();
 
         call.enqueue(new Callback<TeamResponse>() {
             @Override
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TeamResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity3.this, "Failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

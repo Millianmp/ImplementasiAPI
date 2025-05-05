@@ -12,7 +12,4 @@ public  class Team {
 
     @SerializedName("strBadge")
     public String strBadge;
-
-
-
 }
