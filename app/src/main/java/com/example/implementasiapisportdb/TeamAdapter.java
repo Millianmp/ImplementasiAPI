@@ -5,12 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
@@ -32,9 +29,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
         Team team = teamList.get(position);
-        holder.tvTeamName.setText(team.getStrTeam());
+        holder.tvTeamName.setText(team.strTeam);
+        holder.tvStadium.setText(team.strStadium);
         Glide.with(holder.itemView.getContext())
-                .load(team.getStrTeamBadge())  // Logo URL
+                .load(team.strBadge)
                 .into(holder.ivTeamLogo);
     }
 
@@ -44,13 +42,14 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     }
 
     static class TeamViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTeamName;
+        TextView tvTeamName, tvStadium;
         ImageView ivTeamLogo;
 
         TeamViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTeamName = itemView.findViewById(R.id.tvTeamName);
             ivTeamLogo = itemView.findViewById(R.id.ivTeamLogo);
+            tvStadium = itemView.findViewById(R.id.tvTeamStadium);
         }
     }
 }
